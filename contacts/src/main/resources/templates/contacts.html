@@ -29,8 +29,8 @@
         <td th:text="${contact.email}"></td>
         <td th:text="${contact.phone}"></td>
         <td>
-            <a th:href="@{/contacts/edit/{id}(id=${contact.id})}">Editar</a> |
-            <a th:href="@{/contacts/delete/{id}(id=${contact.id})}">Excluir</a>
+            <a th:href="@{/edit/{id}(id=${contact.id})}">Editar</a> |
+            <a th:href="@{/delete/{id}(id=${contact.id})}">Excluir</a>
         </td>
     </tr>
     </tbody>
