@@ -27,8 +27,12 @@ public class ContactService {
         return contactRepository.findById(id).orElse(null);
     }
 
-    public void saveContact(Contact contact) {
-        contactRepository.save(contact);
+    public Contact saveContact(Contact contact) {
+
+        if (contact.getId() != null && contactRepository.existsById(contact.getId())) {
+            return contactRepository.save(contact);
+        }
+        return contactRepository.save(contact);
     }
 
     public void deleteContact(Long id) {

@@ -8,6 +8,7 @@
 <h1>Novo Contato</h1>
 
 <form th:action="@{/}" th:object="${contact}" method="post">
+    <input type="hidden" name="id" th:value="${contact.id}" />
     <label for="name">Nome:</label>
     <input type="text" id="name" th:field="*{name}" placeholder="Nome">
 

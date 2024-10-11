@@ -39,7 +39,8 @@ public class ContactController {
 
     @GetMapping("/edit/{id}")
     public String editContact(@PathVariable Long id, Model model) {
-        model.addAttribute("contact", contactService.getContactById(id));
+        Contact contact = contactService.getContactById(id);
+        model.addAttribute("contact", contact);
         return "form";
     }
 
