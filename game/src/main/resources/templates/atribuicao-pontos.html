@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Atribuição de Pontos</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<h2>Atribuir Pontos</h2>
+<form th:action="@{/children/points}" method="post">
+    <div>
+        <label for="child">Criança:</label>
+        <select id="child" name="childId" th:each="child : ${children}" th:value="${child.id}" th:text="${child.name}"></select>
+    </div>
+    <div>
+        <label for="score">Critério:</label>
+        <select id="score" name="scoreId" th:each="score : ${scoreCriteria}" th:value="${score.id}" th:text="${score.name}"></select>
+    </div>
+    <div>
+        <label for="points">Pontos:</label>
+        <input type="number" id="points" name="points" />
+    </div>
+    <button type="submit">Atribuir</button>
+</form>
+</body>
+</html>

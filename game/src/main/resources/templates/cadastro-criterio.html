@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cadastro Critério de Pontuação</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<h2>Cadastro de Critério de Pontuação</h2>
+<form th:action="@{/criteria/score}" method="post">
+    <div>
+        <label for="name">Nome do Critério:</label>
+        <input type="text" id="name" name="name" />
+    </div>
+    <div>
+        <label for="points">Pontos:</label>
+        <input type="number" id="points" name="points" />
+    </div>
+    <button type="submit">Salvar</button>
+</form>
+</body>
+</html>

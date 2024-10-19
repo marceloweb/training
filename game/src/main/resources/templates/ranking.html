@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ranking</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<h2>Ranking de Crianças</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>Time</th>
+        <th>Pontuação</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="child : ${children}">
+        <td th:text="${child.name}"></td>
+        <td th:text="${child.team.name}"></td>
+        <td th:text="${child.totalScore}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>Ranking de Times</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Time</th>
+        <th>Pontuação</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="team : ${teams}">
+        <td th:text="${team.name}"></td>
+        <td th:text="${team.totalScore}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
