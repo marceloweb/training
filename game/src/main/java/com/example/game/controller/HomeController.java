@@ -7,7 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
     @GetMapping("/")
+    public String init() {
+        return "index";
+    }
+
+    @GetMapping("/home")
     public String home() {
-        return "index"; // O nome do template HTML que será renderizado (index.html)
+        return "home";
     }
 }
