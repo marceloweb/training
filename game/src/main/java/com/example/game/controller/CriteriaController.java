@@ -1,9 +1,6 @@
 package com.example.game.controller;
 
-import com.example.game.model.PenaltyCriteria;
 import com.example.game.model.ScoreCriteria;
-import com.example.game.model.User;
-import com.example.game.service.PenaltyCriteriaService;
 import com.example.game.service.ScoreCriteriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,9 +15,6 @@ public class CriteriaController {
 
     @Autowired
     ScoreCriteriaService scoreCriteriaService;
-
-    @Autowired
-    PenaltyCriteriaService penaltyCriteriaService;
 
     @GetMapping("/criterios")
     public String listarTios(Model model) {
@@ -40,18 +34,6 @@ public class CriteriaController {
     public String saveScoreCriteria(@ModelAttribute ScoreCriteria scoreCriteria) {
         scoreCriteriaService.save(scoreCriteria);
         return "redirect:/criterios";
-    }
-
-    @GetMapping("/penalidade/adicionar")
-    public String showPenaltyCriteriaForm(Model model) {
-        model.addAttribute("penaltyCriteria", new PenaltyCriteria());
-        return "criteria/penalty-register";
-    }
-
-    @PostMapping("/penalidade/adicionar")
-    public String savePenaltyCriteria(@ModelAttribute PenaltyCriteria penaltyCriteria) {
-        penaltyCriteriaService.save(penaltyCriteria);
-        return "redirect:/criteria/penalty";
     }
 
     @GetMapping("/criterios/alterar/{id}")

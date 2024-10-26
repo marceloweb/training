@@ -11,8 +11,8 @@
 <div th:replace="fragments/menu :: menu"></div>
 
 <div class="container mt-5">
-    <h1>Cadastro de Penalidade</h1>
-    <form action="#" th:action="@{/penalidades/adicionar}" th:object="${penalties}" method="post">
+    <h1>Alterar Penalidade</h1>
+    <form action="#" th:action="@{/penalidades/alterar/{id}(id=${penalty.id})}" th:object="${penalty}" method="post">
         <div class="mb-3">
             <label for="name" class="form-label">Nome:</label>
             <input type="text" class="form-control" id="name" th:field="*{name}" />
@@ -26,7 +26,7 @@
             <input type="text" class="form-control" id="pointsToDeduct" th:field="*{pointsToDeduct}" />
         </div>
         <div class="mb-3">
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <button type="submit" class="btn btn-primary">Atualizar</button>
         </div>
     </form>
 
