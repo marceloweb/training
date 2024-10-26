@@ -25,7 +25,7 @@ public class CriteriaController {
     @GetMapping("/score")
     public String showScoreCriteriaForm(Model model) {
         model.addAttribute("scoreCriteria", new ScoreCriteria());
-        return "cadadstro-criterio";
+        return "criteria/criteria-register";
     }
 
     @PostMapping("/score")
@@ -37,7 +37,7 @@ public class CriteriaController {
     @GetMapping("/penalty")
     public String showPenaltyCriteriaForm(Model model) {
         model.addAttribute("penaltyCriteria", new PenaltyCriteria());
-        return "cadastro-penalidade"; // Thymeleaf template para cadastro de penalização
+        return "criteria/penalty-register";
     }
 
     @PostMapping("/penalty")

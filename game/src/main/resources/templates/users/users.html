@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Equipe</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div th:replace="fragments/menu :: menu"></div>
+
+<div style="margin-left: 50px;"><a href="../cadastro">Adicionar usuário</a></div>
+
+<div class="container mt-5">
+    <h1 class="text-center">Usuários</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Apelido</th>
+            <th>Nome Completo</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user, iterStat : ${users}">
+            <td th:text="${iterStat.index + 1}"></td>
+            <td th:text="${user.nickname}"></td>
+            <td th:text="${user.fullName}"></td>
+            <td>
+                <a th:href="@{/equipe/alterar/{id}(id=${user.id})}" class="btn btn-primary btn-sm">Editar</a>
+            </td>
+            <td>
+                <form th:action="@{'/excluir/' + ${user.id}}" method="post">
+                    <input type="hidden" name="_method" value="delete"/>
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

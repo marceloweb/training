@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -37,7 +38,7 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        logger.debug("Buscando usuário com username: {}", username);
+        logger.info("Buscando usuário com username: {}", username);
 
         User user = userRepository.findByUsername(username);
         if (user == null) {
@@ -48,5 +49,27 @@ public class UserService implements UserDetailsService {
         logger.info("Usuário encontrado: {}", username);
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(), user.getPassword(), new ArrayList<>());
+    }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    public User getUserById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado com o ID: " + id));
+    }
+
+    public void deleteUserById(Long id) {
+        userRepository.deleteById(id);
+    }
+
+    public void updateUser(Long id, User updatedUser) {
+        User existingUser = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        existingUser.setNickname(updatedUser.getNickname());
+        existingUser.setFullName(updatedUser.getFullName());
+
+        userRepository.save(existingUser);
     }
 }

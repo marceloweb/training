@@ -9,16 +9,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -36,16 +31,18 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests((req) -> req
                         .requestMatchers("/user").hasRole("user")
-                        .requestMatchers("/home").permitAll()
+                        .requestMatchers("/").permitAll()
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .formLogin()
-                .successHandler(new CustomAuthenticationSuccessHandler()) // Adicionando o custom success handler
-                .permitAll() // Permitir o acesso à página de login
+                .successHandler(new CustomAuthenticationSuccessHandler())
+                .permitAll()
                 .and()
                 .logout()
-                .permitAll();
-
+                .logoutSuccessHandler((request, response, authentication) -> {
+                    logger.info("Usuário desconectado: " + authentication.getName());
+                    response.sendRedirect("/");
+                });
         return http.build();
     }
 

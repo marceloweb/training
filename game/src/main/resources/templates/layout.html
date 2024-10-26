@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Meu Jogo</title>
+    <link rel="stylesheet" type="text/css" href="@{/css/styles.css}">
+</head>
+<body>
+<header>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/user">User Page</a>
+        <a href="/logout">Logout</a>
+    </nav>
+</header>
+
+<main>
+    <div th:replace="${content}"></div>
+</main>
+</body>
+</html>

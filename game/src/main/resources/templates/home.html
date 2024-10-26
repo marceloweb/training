@@ -1,12 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Inicial</title>
+    <title>Início</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<h1>Bem-vindo ao Jogo!</h1>
-<p>Use o menu acima para navegar pelo sistema.</p>
+<div th:replace="fragments/menu :: menu"></div>
+
+<div class="container mt-5">
+    <h1 class="text-center">Bem-vindo ao Acamp!</h1>
+    <p class="text-center">Aqui você pode acompanhar o ranking, cadastrar usuários, equipes e crianças.</p>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

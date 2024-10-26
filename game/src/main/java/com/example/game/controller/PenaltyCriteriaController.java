@@ -23,18 +23,18 @@ public class PenaltyCriteriaController {
     public String listPenaltyCriteria(Model model) {
         List<PenaltyCriteria> penalties = penaltyCriteriaService.findAll();
         model.addAttribute("penalties", penalties);
-        return "penaltyCriteriaList"; // Template para exibir a lista de penalizações
+        return "penalty-criteria-list";
     }
 
     @GetMapping("/add")
     public String showAddPenaltyCriteriaForm(Model model) {
         model.addAttribute("penaltyCriteria", new PenaltyCriteria());
-        return "addPenaltyCriteriaForm"; // Formulário para adicionar um novo critério de penalização
+        return "add-penalty-criteria-form";
     }
 
     @PostMapping("/add")
     public String addPenaltyCriteria(@ModelAttribute PenaltyCriteria penaltyCriteria) {
         penaltyCriteriaService.save(penaltyCriteria);
-        return "redirect:/penalty-criteria/list"; // Redireciona para a lista após o cadastro
+        return "redirect:/penalty-criteria/list";
     }
 }

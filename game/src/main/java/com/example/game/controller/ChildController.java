@@ -13,28 +13,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/children")
+@RequestMapping("/sub13")
 public class ChildController {
 
     @Autowired
     private ChildService childService;
 
-    @GetMapping("/list")
+    @GetMapping("/lista")
     public String listChildren(Model model) {
         List<Child> children = childService.findAll();
         model.addAttribute("children", children);
-        return "childList"; // Retorna o template Thymeleaf com a lista de crianças
+        return "children/child-list";
     }
 
     @GetMapping("/add")
     public String showAddChildForm(Model model) {
         model.addAttribute("child", new Child());
-        return "addChildForm"; // Formulário para adicionar uma nova criança
+        return "children/add-child-form";
     }
 
     @PostMapping("/add")
     public String addChild(@ModelAttribute Child child) {
         childService.save(child);
-        return "redirect:/children/list"; // Redireciona para a lista de crianças após o cadastro
+        return "redirect:/children/list";
     }
 }

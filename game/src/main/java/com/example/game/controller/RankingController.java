@@ -28,6 +28,6 @@ public class RankingController {
         List<Team> teams = teamService.findAllOrderByScore();
         model.addAttribute("childrenRanking", children);
         model.addAttribute("teamRanking", teams);
-        return "ranking";
+        return "ranking/show";
     }
 }
