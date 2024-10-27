@@ -2,13 +2,17 @@ package com.example.game.model;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 public class Child {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String fullName;
+    private String nickname;
+    private Date birthday;
     @ManyToOne
     private Team team;
     private int totalScore;
@@ -21,12 +25,28 @@ public class Child {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     public Team getTeam() {

@@ -9,22 +9,24 @@
 <div th:replace="fragments/menu :: menu"></div>
 
 <div class="container mt-5">
-    <h1 class="text-center">Crianças Cadastradas</h1>
+    <h1 class="text-center">Lista do Sub13</h1>
     <table class="table table-striped">
         <thead>
         <tr>
             <th>#</th>
-            <th>Nome da Criança</th>
+            <th>Apelido</th>
+            <th>Nome</th>
             <th>Idade</th>
             <th>Time</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="criança, iterStat : ${criancas}">
+        <tr th:each="child, iterStat : ${children}">
             <td th:text="${iterStat.index + 1}"></td>
-            <td th:text="${criança.nome}"></td>
-            <td th:text="${criança.idade}"></td>
-            <td th:text="${criança.time.nome}"></td>
+            <td th:text="${child.nickname}"></td>
+            <td th:text="${child.fullName}"></td>
+            <td th:text="${child.birthday}"></td>
+            <td th:text="${child.team}"></td>
         </tr>
         </tbody>
     </table>

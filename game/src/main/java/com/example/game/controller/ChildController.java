@@ -18,22 +18,22 @@ public class ChildController {
     @Autowired
     private ChildService childService;
 
-    @GetMapping("/lista")
+    @GetMapping("/sub13")
     public String listChildren(Model model) {
         List<Child> children = childService.findAll();
         model.addAttribute("children", children);
         return "children/child-list";
     }
 
-    @GetMapping("/add")
+    @GetMapping("/sub13/adicionar")
     public String showAddChildForm(Model model) {
         model.addAttribute("child", new Child());
         return "children/add-child-form";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/sub13/adicionar")
     public String addChild(@ModelAttribute Child child) {
         childService.save(child);
-        return "redirect:/children/list";
+        return "redirect:/sub13";
     }
 }
