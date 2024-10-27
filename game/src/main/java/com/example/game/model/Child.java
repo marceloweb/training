@@ -1,8 +1,12 @@
 package com.example.game.model;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Date;
+import java.util.Optional;
 
 @Entity
 public class Child {
@@ -12,8 +16,9 @@ public class Child {
     private Long id;
     private String fullName;
     private String nickname;
-    private Date birthday;
-    @ManyToOne
+    private LocalDate birthday;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "team_id")
     private Team team;
     private int totalScore;
 
@@ -41,11 +46,12 @@ public class Child {
         this.nickname = nickname;
     }
 
-    public Date getBirthday() {
+    @DateTimeFormat(pattern="YYYY-MM-dd")
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 
@@ -63,5 +69,12 @@ public class Child {
 
     public void setTotalScore(int totalScore) {
         this.totalScore = totalScore;
+    }
+
+    public Integer getAge() {
+        if (birthday == null) {
+            return null;
+        }
+        return Period.between(birthday, LocalDate.now()).getYears();
     }
 }

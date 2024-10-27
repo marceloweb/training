@@ -12,7 +12,7 @@
 
 <div class="container mt-5">
     <h1>Cadastro do Sub13</h1>
-    <form action="#" th:action="@{/sub13/adicionar}" th:object="${sub13}" method="post">
+    <form action="#" th:action="@{/sub13/alterar/{id}(id=${sub13.id})}" th:object="${sub13}" method="post">
         <div class="mb-3">
             <label for="nickname" class="form-label">Apelido:</label>
             <input type="text" class="form-control" id="nickname" th:field="*{nickname}" />
@@ -27,10 +27,14 @@
         </div>
         <div class="mb-3">
             <label for="team" class="form-label">Time:</label>
-            <input type="text" class="form-control" id="team" th:field="*{team}" />
+            <select class="form-control" id="team" th:field="*{team.id}">
+                <option value="" disabled selected>Selecione um Time</option>
+                <option value="1">Meninas</option>
+                <option value="3">Meninos</option>
+            </select>
         </div>
         <div class="mb-3">
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <button type="submit" class="btn btn-primary">Atualizar</button>
         </div>
     </form>
 
