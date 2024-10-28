@@ -23,6 +23,7 @@
             <th>Time</th>
             <th></th>
             <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -33,6 +34,9 @@
             <td th:text="${#temporals.format(child.birthday, 'dd/MM/yyyy')}"></td>
             <th th:text="${child.age}"></th>
             <td th:text="${child.team.name}"></td>
+            <td>
+                <a th:href="@{/sub13/{id}/points(id=${child.id})}">Atribuir Pontos</a>
+            </td>
             <td>
                 <a th:href="@{/sub13/alterar/{id}(id=${child.id})}" class="btn btn-primary btn-sm">Editar</a>
             </td>

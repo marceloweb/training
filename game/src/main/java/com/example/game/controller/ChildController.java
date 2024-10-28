@@ -1,19 +1,19 @@
 package com.example.game.controller;
 
 import com.example.game.model.Child;
-import com.example.game.model.PenaltyCriteria;
-import com.example.game.model.Team;
+import com.example.game.model.User;
 import com.example.game.service.ChildService;
+import com.example.game.service.HistoryService;
+import com.example.game.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.time.format.DateTimeFormatter;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -21,6 +21,12 @@ public class ChildController {
 
     @Autowired
     private ChildService childService;
+
+    @Autowired
+    private HistoryService historyService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/sub13")
     public String listChildren(Model model) {
@@ -64,5 +70,22 @@ public class ChildController {
             redirectAttributes.addFlashAttribute("errorMessage", "Erro ao excluir sub13.");
         }
         return "redirect:/sub13";
+    }
+
+    @GetMapping("sub13/{id}/points")
+    public String assignPoints(@PathVariable Long id, Model model, @AuthenticationPrincipal UserDetails currentUser) {
+
+        User user = userService.findUserByUsername(currentUser.getUsername());
+
+        model.addAttribute("childId", id);
+        model.addAttribute("userId", user.getId());
+
+        return "children/assign-points";
+    }
+
+    @PostMapping("sub13/{id}/points")
+    public String savePoints(@PathVariable Long id, @RequestParam Long userId, @RequestParam int points, @RequestParam String action) {
+        historyService.addHistory(id, userId, action, points);
+        return "redirect:/ranking";
     }
 }

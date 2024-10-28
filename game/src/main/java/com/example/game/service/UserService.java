@@ -51,6 +51,10 @@ public class UserService implements UserDetailsService {
                 user.getUsername(), user.getPassword(), new ArrayList<>());
     }
 
+    public com.example.game.model.User findUserByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
