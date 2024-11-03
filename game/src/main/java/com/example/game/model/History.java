@@ -1,9 +1,6 @@
 package com.example.game.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
@@ -14,8 +11,12 @@ public class History {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long childId;
+    @ManyToOne
+    @JoinColumn(name = "child_id")
+    private Child child;
+
     private Long userId;
+    private String nickname;
     private String action;
     private int points;
     private LocalDate date;
@@ -28,12 +29,12 @@ public class History {
         this.id = id;
     }
 
-    public Long getChildId() {
-        return childId;
+    public Child getChild() {
+        return child;
     }
 
-    public void setChildId(Long childId) {
-        this.childId = childId;
+    public void setChild(Child child) {
+        this.child = child;
     }
 
     public Long getUserId() {
@@ -42,6 +43,14 @@ public class History {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getAction() {

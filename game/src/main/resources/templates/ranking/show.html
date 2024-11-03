@@ -20,11 +20,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="criança, iterStat : ${ranking}">
+        <tr th:each="rank, iterStat : ${ranking}">
             <td th:text="${iterStat.index + 1}"></td>
-            <td th:text="${criança.nome}"></td>
-            <td th:text="${criança.pontos}"></td>
-            <td th:text="${criança.time.nome}"></td>
+            <td th:text="${rank.nickname}"></td>
+            <td th:text="${rank.team}"></td>
+            <td th:text="${rank.totalPoints}"></td>
         </tr>
         </tbody>
     </table>

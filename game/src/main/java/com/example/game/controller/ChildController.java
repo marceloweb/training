@@ -84,7 +84,7 @@ public class ChildController {
     }
 
     @PostMapping("sub13/{id}/points")
-    public String savePoints(@PathVariable Long id, @RequestParam Long userId, @RequestParam int points, @RequestParam String action) {
+    public String savePoints(@PathVariable Child id, @RequestParam Long userId, @RequestParam int points, @RequestParam String action) {
         historyService.addHistory(id, userId, action, points);
         return "redirect:/ranking";
     }

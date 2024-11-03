@@ -1,7 +1,7 @@
 package com.example.game.controller;
 
-import com.example.game.model.Child;
-import com.example.game.model.Team;
+import com.example.game.dto.RankingDTO;
+import com.example.game.service.RankingService;
 import com.example.game.service.ChildService;
 import com.example.game.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +22,13 @@ public class RankingController {
     @Autowired
     TeamService teamService;
 
+    @Autowired
+    private RankingService rankingService;
+
     @GetMapping
     public String showRanking(Model model) {
-        List<Child> children = childService.findAllOrderByScore();
-        List<Team> teams = teamService.findAllOrderByScore();
-        model.addAttribute("childrenRanking", children);
-        model.addAttribute("teamRanking", teams);
+        List<RankingDTO> ranking = rankingService.getRanking();
+        model.addAttribute("ranking", ranking);
         return "ranking/show";
     }
 }
